@@ -54,25 +54,32 @@ const animals = data.map((row) => {
 })
 
 //! Find most frequent group 
+// create a new object to store the groups of animals
 const groupedAnimals = {};
+// for each animal in our list
 animals.forEach((animal) => {
+  // if there is no group (array with a key) for the species we are currently working with
   if (!groupedAnimals[animal.species]) {
+    // create a new empty array
     groupedAnimals[animal.species] = [];
   }
+  // then push the animal we are working with into the appropriate group
   groupedAnimals[animal.species].push(animal);
 })
 
+// get all the species that are in the data
 const species = Object.keys(groupedAnimals);
 
+// sort the species by whichever group has the most items
 species.sort((a,b) => {
   return groupedAnimals[a].length < groupedAnimals[b].length ? 1 : -1;
 })
-const mostFreq = species[0];
+
+// get the most frequent group from the groups object by the first species
 const mostFreqGroup = groupedAnimals[species[0]];
 
-// console.log(mostFreq)
-// console.log(mostFreqGroup)
 //! Find oldest of most frequent group
+// sort the animals by comparing their birthdates
 mostFreqGroup.sort((a, b) => {
   if (a.birthdate === b.birthdate) {
     return 0;
@@ -82,11 +89,11 @@ mostFreqGroup.sort((a, b) => {
     return 1;
   }
 })
+// oldest is now at the front of the most frequent group array
 const oldest = mostFreqGroup[0];
 
 //! Make oldest speak
 oldest.speak();
-
 
 
 
