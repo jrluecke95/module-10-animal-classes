@@ -1,4 +1,5 @@
 const fs = require('fs');
+const Animal = require('./Animal');
 
 const contents = fs.readFileSync(process.argv[2], 'utf8');
 
@@ -61,14 +62,31 @@ animals.forEach((animal) => {
   groupedAnimals[animal.species].push(animal);
 })
 
-console.log(groupedAnimals.dog);
+const species = Object.keys(groupedAnimals);
 
+species.sort((a,b) => {
+  return groupedAnimals[a].length < groupedAnimals[b].length ? 1 : -1;
+})
+const mostFreq = species[0];
+const mostFreqGroup = groupedAnimals[species[0]];
+
+// console.log(mostFreq)
+// console.log(mostFreqGroup)
 //! Find oldest of most frequent group
+mostFreqGroup.sort((a, b) => {
+  if (a.birthdate === b.birthdate) {
+    return 0;
+  } else if (a.birthdate < b.birthdate) {
+    return -1;
+  } else {
+    return 1;
+  }
+})
+const oldest = mostFreqGroup[0];
 
 //! Make oldest speak
+oldest.speak();
 
-function Animal(name, birthdate, species) {
-  this.name = name;
-  this.birthdate = birthdate;
-  this.species = species;
-}
+
+
+
