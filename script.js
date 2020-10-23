@@ -1,5 +1,5 @@
 const fs = require('fs');
-const Animal = require('./Animal');
+const {Animal, Dog} = require('./AnimalEs6');
 
 const contents = fs.readFileSync(process.argv[2], 'utf8');
 
@@ -49,7 +49,11 @@ data = data.map((elem) => {
 
 // option 2 - map over data
 const animals = data.map((row) => {
-  return new Animal(row[0], row[1], row[2]);
+  if (row[2] === 'dog') {
+    return new Dog(row[0], row[1], row[2])
+  } else {
+    return new Animal(row[0], row[1], row[2]);
+  }
 })
 
 //! Find most frequent group 
