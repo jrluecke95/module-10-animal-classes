@@ -16,7 +16,6 @@ data.pop() // remove last value
 // option 3 - loop but skip 0 and last index
 // for (let i = 1; i < data.length - 1; i++) {
 //   const element = data[i];
-  
 // }
 
 //! split into columns via the comma
@@ -94,6 +93,3 @@ const oldest = mostFreqGroup[0];
 
 //! Make oldest speak
 oldest.speak();
-
-
-
